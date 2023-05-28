@@ -1,7 +1,8 @@
-#include "Points.h"
 #include <stdlib.h>
 #include <utility>
 #include <sstream>
+#include <iostream>
+#include "Points.h"
 
 using namespace std;
 
@@ -18,6 +19,11 @@ Points::Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
 
 	this->dx = x4;
 	this->dy = y4;
+}
+
+Points::~Points()
+{
+	cout << "Desctruction of Points " << this->getAllPointsStr() << endl;
 }
 
 int Points::getAX() const { return this->ax; }
@@ -40,29 +46,9 @@ void Points::setDX(int dx) { this->dx = dx; }
 int Points::getDY() const { return this->dy; }
 void Points::setDY(int dy) { this->dy = dy; }
 
-string Points::getAStr()
+string Points::getAllPointsStr() const
 {
-	return coordsToStr(ax, ay);
-}
-
-string Points::getB()
-{
-	return coordsToStr(bx, by);
-}
-
-string Points::getC()
-{
-	return coordsToStr(cx, cy);
-}
-
-string Points::getD()
-{
-	return coordsToStr(dx, dy);
-}
-
-string Points::getAllPoints()
-{
-	return this->getAStr() + this->getB() + this->getC() + this->getD();
+	return this->getAStr() + this->getBStr() + this->getCStr() + this->getDStr();
 }
 
 string coordsToStr(int a, int b)
@@ -74,29 +60,22 @@ string coordsToStr(int a, int b)
 	return ss.str();
 }
 
-inline int area(int ax, int ay, int bx, int by, int cx, int cy) 
+string Points::getAStr() const
 {
-	return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
-}
+	return coordsToStr(this->ax, this->ay);
+};
 
-inline bool intersect_1(int a, int b, int c, int d) 
+string Points::getBStr() const
 {
-	if (a > b)
-	{
-		swap(a, b);
-	}
+	return coordsToStr(this->bx, by);
+};
 
-	if (c > d)
-	{
-		swap(c, d);
-	}
+string Points::getCStr() const
+{
+	return coordsToStr(this->cx, this->cy);
+};
 
-	return max(a, c) <= min(b, d);
-}
-
-bool intersect(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy) {
-	return intersect_1(ax, bx, cx, dx)
-		&& intersect_1(ay, by, cy, dy)
-		&& area(ax, ay, bx, by, cx, by) * area(ax, ay, bx, by, dx, dy) <= 0
-		&& area(cx, cy, dx, dy, ax, ay) * area(cx, cy, dx, dy, bx, by) <= 0;
+string Points::getDStr() const
+{
+	return coordsToStr(this->dx, this->dy);
 }

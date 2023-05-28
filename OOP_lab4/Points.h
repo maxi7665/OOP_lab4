@@ -20,6 +20,7 @@ private:
 public:
 
 	Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+	~Points();
 
 	int getAX() const;
 	void setAX(int x1);
@@ -45,10 +46,10 @@ public:
 	int getDY() const;
 	void setDY(int y4);
 
-	string getAStr();
-	string getB();
-	string getC();
-	string getD();
+	std::string getAllPointsStr() const;
 
-	string getAllPoints();
+	std::string getAStr() const;
+	std::string getBStr() const;
+	std::string getCStr() const;
+	std::string getDStr() const;	
 };

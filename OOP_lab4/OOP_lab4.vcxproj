@@ -129,9 +129,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Points.cpp" />
+    <ClCompile Include="Quadrilateral.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Points.h" />
+    <ClInclude Include="Points.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Quadrilateral.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
