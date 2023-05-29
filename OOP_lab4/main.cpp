@@ -25,4 +25,6 @@ int main()
     cout << endl;
 
     delete quadr1;
+
+    return 0;
 }
