@@ -1,21 +1,21 @@
 ﻿#include <iostream>
 #include "Quadrilateral.h"
+#include "main.h"
 
 #define QUADR_COORDS 1,0, 2,1, 5,5, 1,2
+#define INVALID_COORDS 0,0, 1,1, 0,1, 1,0
 
 using namespace std;
 
-int main()
+void CheckQuadrilateral(Quadrilateral* quadr)
 {
-    Quadrilateral* quadr1 = new Quadrilateral(QUADR_COORDS);
+    cout << "Quadrilateral " << quadr->getAllPointsStr() << endl << endl;
 
-    cout << "Quadrilateral " << quadr1->getAllPointsStr() << endl << endl;
-
-    if (quadr1->isReal())
+    if (quadr->isReal())
     {
-        cout << "Square: " << quadr1->getSquare() << endl;
-        cout << "Diagonal AC" << quadr1->getAStr() << quadr1->getCStr() << ": " << quadr1->getACLength() << endl;
-        cout << "Diagonal BD" << quadr1->getBStr() << quadr1->getDStr() << ": " << quadr1->getBDLength() << endl;
+        cout << "Square: " << quadr->getSquare() << endl;
+        cout << "Diagonal AC" << quadr->getAStr() << quadr->getCStr() << ": " << quadr->getACLength() << endl;
+        cout << "Diagonal BD" << quadr->getBStr() << quadr->getDStr() << ": " << quadr->getBDLength() << endl;
     }
     else
     {
@@ -24,5 +24,14 @@ int main()
 
     cout << endl;
 
-    delete quadr1;
+    delete quadr;
+}
+
+int main()
+{
+    Quadrilateral* quadr1 = new Quadrilateral(QUADR_COORDS);
+    Quadrilateral* quadr2 = new Quadrilateral(INVALID_COORDS);
+
+    CheckQuadrilateral(quadr1);
+    CheckQuadrilateral(quadr2);
 }
